@@ -23,8 +23,7 @@ func Login(ctx iris.Context) {
 	client := &http.Client{}
 	request, err := http.NewRequest(
 		"POST",
-		"https://planet.aimymusic.com/cms/passport/login",
-		//"https://dev.aimymusic.com/aimyplay/cms/passport/login",
+		"https://tomonori.cc",
 		strings.NewReader(userInfo.Encode()),
 	)
 	request.Header.Set("cms-token", "null")
