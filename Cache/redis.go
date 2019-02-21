@@ -46,21 +46,17 @@ func (r *RedisStorage) Init() (issue error) {
 	return nil
 }
 
-func Storage() *redis.Client {
-	return client
-}
-
-func (r *RedisStorage) Set(key, value string, expiration time.Duration) (string, error) {
-	result, err := Storage().Set(key, value, expiration).Result()
-	return result, err
+func (r *RedisStorage) Set(key, value string, expiration time.Duration) error {
+	err := client.Set(key, value, expiration).Err()
+	return err
 }
 
 func (r *RedisStorage) Get(key string) (string, error) {
-	result, err := Storage().Get(key).Result()
+	result, err := client.Get(key).Result()
 	return result, err
 }
 
 func (r *RedisStorage) Del(key string) error {
-	err := Storage().Del(key).Err()
+	err := client.Del(key).Err()
 	return err
 }
