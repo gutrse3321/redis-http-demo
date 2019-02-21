@@ -43,7 +43,11 @@ func requestJavaServerService(username, password string) (interface{}, error) {
 
 	request, err := http.NewRequest(
 		"POST",
+<<<<<<< HEAD
 		urlAddr,
+=======
+		"https://tomonori.cc",
+>>>>>>> master
 		strings.NewReader(userInfo.Encode()),
 	)
 	request.Header.Set("Content-type", "application/x-www-form-urlencoded")
@@ -133,6 +137,7 @@ func cacheManagerService(resultObj VMlogin.Vresult) error {
 			return err
 		}
 
+<<<<<<< HEAD
 		// 设置新的token信息缓存
 		redisKey = FormatRedisString(REDIS_KEY_TOKEN, resultObj.Data.Token)
 		redisValue = strconv.Itoa(resultObj.Data.UserId)
@@ -148,6 +153,11 @@ func cacheManagerService(resultObj VMlogin.Vresult) error {
 		if err != nil {
 			return err
 		}
+=======
+		redisKey = fmt.Sprintf("%s:%d", "AIMY_BIGDATA_USER", resultObj.Data.UserId)
+		redisJsonValue, _ := json.Marshal(resultObj.Data)
+		redisValue = string(redisJsonValue)
+>>>>>>> master
 
 		// 设置覆盖新的用户信息
 		err = Cache.Instance().Set(redisKey, redisValue, 744 * time.Hour)
@@ -165,4 +175,7 @@ func cacheManagerService(resultObj VMlogin.Vresult) error {
 	}
 	return nil
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
