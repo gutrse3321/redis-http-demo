@@ -33,11 +33,7 @@ func Login(ctx iris.Context) {
 	client := &http.Client{}
 	request, err := http.NewRequest(
 		"POST",
-<<<<<<< HEAD
-		"http://tomonori.cc",
-=======
 		"https://tomonori.cc",
->>>>>>> master
 		strings.NewReader(userInfo.Encode()),
 	)
 	request.Header.Set("Content-type", "application/x-www-form-urlencoded")
@@ -62,7 +58,6 @@ func Login(ctx iris.Context) {
 			ctx.JSON(resultObj)
 		}
 
-<<<<<<< HEAD
 		redisKey = fmt.Sprintf("%s:%d", "AIMY_BIGDATA_USER", resultObj.Data.UserId)
 		redisJsonValue, _ := json.Marshal(resultObj.Data)
 		redisValue = string(redisJsonValue)
@@ -95,6 +90,3 @@ func Login(ctx iris.Context) {
 		}
 	}
 }
-=======
-}
->>>>>>> master
